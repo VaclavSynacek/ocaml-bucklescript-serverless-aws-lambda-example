@@ -1,0 +1,38 @@
+service: ocaml-serverless-example
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-central-1
+
+plugins:
+  - serverless-offline
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  some:
+    handler: lib/js/src/index.some_function
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+
+  fact:
+    handler: lib/js/src/index.factorial_function
+    events:
+      - http:
+          path: factorial/{num}
+          method: get
+          cors: true
+
+
