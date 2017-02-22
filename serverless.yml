@@ -9,14 +9,14 @@ provider:
 plugins:
   - serverless-offline
 
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+#this is actually needed not to include the whole bucklesript toolchain in deployment zip
+package:
+  exclude:
+    - lib/bs/**
+    - node_modules/bs-platform/**
+  include:
+    - node_modules/bs-platform/lib/js/**
+    - lib/js/**
 
 functions:
   some:
