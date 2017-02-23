@@ -11,8 +11,9 @@ npm run deploy  #for aws deployment once built
 ```
 
 # use
-Go to http://localhost:3000/ for test output or to http://localhost:3000/factorial/15 for factorial computation by lambda function. If deployed to AWS replace host with the actual host and port with 80.
+Go to http://localhost:3000/ for test output or to http://localhost:3000/factorial/15 for factorial computation by lambda function. If deployed to AWS replace endpoints with the actual endpoins returned by serverless deploy tool.
 
 # status
 Works on local.
-Deploys on AWS and excecutes on http requests, but does not return output for unknown reason (fixes welcomed)
+Works on AWS Lambda.
+Ugly code.
