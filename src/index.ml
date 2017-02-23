@@ -1,8 +1,10 @@
-
+external to_json_string : ('a -> string) = "js_json_stringify"
 
 let some_function _ _ callback =
-  Js.log "Ocaml in AWS Lambda";
-  let response = [%bs.obj { statusCode = 200; body = { message = "Ocaml / Buckle script output from AWS Lambda" } }] in
+  let messageToTheWorld = "Ocaml / Bucklescript output from AWS Lambda" in
+  Js.log messageToTheWorld;
+  let body = to_json_string [%bs.obj { message = messageToTheWorld }] in
+  let response = [%bs.obj { statusCode = 200; body = body }] in
   let _ = callback Js.null response [@bs] in
   ()
 
@@ -26,6 +28,7 @@ let factorial_function event _ callback =
   Js.log ("Factorial in AWS Lambda for number " ^ event##pathParameters##num);
   let n = int_of_string event##pathParameters##num in
   let result = factorial n in
-  let response = [%bs.obj { statusCode = 200; body = { message = "Factorial computation in OCaml/Bucklescript"; input = (string_of_int n) ; output = result} }] in
+  let body = to_json_string [%bs.obj { message = "Factorial computation in OCaml/Bucklescript"; input = (string_of_int n) ; output = result}] in
+  let response = [%bs.obj { statusCode = 200; body = body }] in
   let _ = callback Js.null response [@bs] in
   ()
