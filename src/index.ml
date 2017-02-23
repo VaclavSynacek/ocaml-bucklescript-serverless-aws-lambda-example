@@ -4,7 +4,8 @@ let some_function _ _ _callback =
   Js.log "Ocaml in AWS Lambda";
   let response = [%bs.obj { statusCode = 200; body = { message = "Ocaml / Buckle script output from AWS Lambda" } }] in
   let callback err resp = _callback err resp [@bs] in
-  callback Js.null response
+  let _ = callback Js.null response in
+  ()
 
 class type _fParams = object
   val num : string
@@ -28,4 +29,5 @@ let factorial_function event _ _callback =
   let result = factorial n in
   let response = [%bs.obj { statusCode = 200; body = { message = "Factorial computation in OCaml/Bucklescript"; input = (string_of_int n) ; output = result} }] in
   let callback err resp = _callback err resp [@bs] in
-  callback Js.null response
+  let _ = callback Js.null response in
+  ()
