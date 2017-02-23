@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bsb",
-    "watch": "bsb -w & serverless offline",
-    "deploy": "serverless deploy"
+    "watch": "bsb -w & node_modules/.bin/serverless offline",
+    "deploy": "node_modules/.bin/serverless deploy"
   },
   "keywords": [
     "ocaml",
@@ -22,6 +22,7 @@
     "bs-platform": "^1.4.3"
   },
   "devDependencies": {
-    "serverless-offline": "^3.9.0"
+    "serverless-offline": "^3.9.0",
+    "serverless": "^1.7.0"
   }
 }
